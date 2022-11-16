@@ -26,6 +26,10 @@ export default function ContentWrapper() {
     var innerStyle = {
         width: "80vw",
         height: "80vh",
+        top: "50%",
+        left: "50%",
+        position: "absolute",
+        transform: "translate(-50%, -50%)",
     }
 
     var leftPaneStyle = {
