@@ -14,14 +14,22 @@ body {
 
 .top-left-pane {
   background-color: #cae8d4;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
 }
 
 .bot-left-pane {
   background-color: #ADDEBE;
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
 }
 
 .right-pane {
   background-color: #8bcca0;
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0px !important;
 }
 
 hr,
