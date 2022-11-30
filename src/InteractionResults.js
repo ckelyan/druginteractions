@@ -1,32 +1,63 @@
-function OptionalField(props) {
-    var style = {
-        marginBottom: 20,
-    }
-    return (
-        props.value ? <div style={style}>
-            <h2>{props.children}</h2>
-            <p>{props.value}</p>
-        </div> : null
-    )
+import { colorMap } from "./Const";
+import { useEffect, useRef } from "react";
+
+const useIsMount = () => {
+    const isMountRef = useRef(true);
+    useEffect(() => {
+        isMountRef.current = false;
+    }, []);
+    return isMountRef.current;
 }
 
 export default function InteractionResults(props) {
-    const [thGroup, intGroup, delphiClass, intType, intMech, details] = props.data || [];
+    const isMount = useIsMount();
 
-    const style = {
-        padding: 20,
-        overflow: "scroll",
-        height: "100%",
+    const [, , intType, , intMech, details, recomendations, references] = props.data || [];
+
+    const styleWIcon = {
+        marginLeft: 4
     }
 
-    return (
-        <div style={style}>
-            <OptionalField value={thGroup}>Therapeutic group</OptionalField>
-            <OptionalField value={intGroup}>Interaction group</OptionalField>
-            <OptionalField value={delphiClass}>Delphi class</OptionalField>
-            <OptionalField value={intType}>Interaction type</OptionalField>
-            <OptionalField value={intMech}>Interaction mechanism</OptionalField>
-            <OptionalField value={details}>Details</OptionalField>
+    useEffect(() => {
+        if (isMount) {
+            const beforeLast = document.querySelector(".interaction-pane > div:nth-last-child(2) > p");
+            const blPos = beforeLast.offsetTop;
+            const blHeight = beforeLast.offsetHeight + 20;
+            console.log(blPos, blHeight);
+            document.documentElement.style.setProperty('--before-ref-height', "px")
+        }
+    });
+
+
+    const rendered = (
+        <div className="interaction-pane">
+            {intType && 
+                <div className="int-type">
+                    <p className="int-type__text" style={{background: colorMap[intType]}}>{intType}</p>
+                </div>
+            }
+            {intMech &&
+                <div>
+                   <p className='icon icon-wrench' style={styleWIcon}>{intMech}</p>
+                </div>
+            }
+            {details &&
+                <div>
+                    <p className='icon icon-file' style={styleWIcon}>{details}</p>
+                </div>
+            }
+            {recomendations &&
+                <div>
+                    <p>{recomendations}</p>
+                </div>
+            }
+            {references &&
+                <div>
+                    <p className="ref">{references}</p>
+                </div>
+            }
         </div>
     )
+
+    return rendered;
 }

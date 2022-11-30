@@ -1,0 +1,87 @@
+:root {
+  --color-b: #0A090C;
+  --color-db: #B5BED0;
+  --color-lb: #C3D5D3;
+  --color-w: #F6F6EE;
+  --color-g: #98D5AC;
+}
+
+body {
+  font-family: NeoSansStd, Arial, sans-serif, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.top-left-pane {
+  background-color: #cae8d4;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+
+.bot-left-pane {
+  background-color: #ADDEBE;
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+.right-pane {
+  background-color: #8bcca0;
+  border-bottom-left-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+}
+
+hr,
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.react-tabs__tab-panel {
+  overflow: scroll;
+  height: 100%;
+}
+
+#result-pane {
+  height: 100%;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+.container {
+  border-radius: 5px;
+}
+
+hr {
+  border: 0px solid #000;
+  border-top-width: 1px;
+}
+
+ul {
+  overflow-x: scroll;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+}
+
+ul > li {
+  display: inline-block;
+  background: #fff;
+  padding: 10px;
+  border-right: 1px solid #000;
+  user-select: none;
+}
+
+ul > li:hover {
+  box-shadow: 0px 0px 0px 1px #000 inset;
+}
+
+ul > li.react-tabs__tab--selected {
+  background: #e6e6e6e6;
+}

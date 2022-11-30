@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Loader from './Loader';
-import DoacSelect from './DoacSelect';
-import ComedSelect from './ComedSelect';
+import Select from './Select';
 import ResultPane from './ResultPane';
 import axios from 'axios'
 
 export default function ContentWrapper() {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [doac, setDoac] = useState('');
+    const [comed, setComed] = useState([]);
 
     useEffect(() => {
         const getItems = async () => {
@@ -19,55 +20,31 @@ export default function ContentWrapper() {
         getItems();
     }, []);
 
-    var containerStyle = {
-        
-    }
-    
-    var innerStyle = {
-        width: "80vw",
-        height: "80vh",
-        top: "50%",
-        left: "50%",
-        position: "absolute",
-        transform: "translate(-50%, -50%)",
+    const getSelector = (f, isMulti=false) => {
+        return isMulti ? 
+            (id) => { f(prev => prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]) }
+            : (id) => { f(() => new Array(id)) }
     }
 
-    var leftPaneStyle = {
-        width: "33%",
-        height: "100%",
-        float: "left",
+    var doacOptions = [];
+    if (doac !== '' && items) {
+        doacOptions = Object.keys(items[doac]);
     }
-
-    var rightPaneStyle = {
-        width: "66%",
-        float: "left",
-        height: "100%",
-        borderLeft: 0,
-    }
-
-    var selectStyle = {
-        height: "50%",
-        textAlign: "center",
-        
-    }
-
-    const [doac, setDoac] = useState('');
-    const [comed, setComed] = useState([]);
 
     return (
-        <div style={containerStyle}>
+        <div className="content">
             <Loader visibility={loading}/>
-            <div style={innerStyle} className="container">
-                <div style={leftPaneStyle} className="container left-pane">
-                    <div style={selectStyle} className="top-left-pane">
-                        <DoacSelect selected={doac} set={doac => {setDoac(doac); setComed([]);}} options={items._DOAC}/>
+            <div className="content-grid">
+                <div className="left-pane">
+                    <div id="doac-select">
+                        <Select selected={doac} onChange={getSelector(doac => {setDoac(doac); setComed([]);})} options={items?._DOAC}/>
                     </div>
-                    <div style={selectStyle} className="container bot-left-pane">
-                        <ComedSelect selected={comed} set={setComed} options={items[doac.value]}/>
+                    <div id="comed-select">
+                        <Select selected={comed} onChange={getSelector(setComed, true)} options={doacOptions}/>
                     </div>
                 </div>
-                <div style={rightPaneStyle} className="container right-pane">
-                    <ResultPane data={items} doac={doac} comed={comed}/>
+                <div className="right-pane">
+                    <ResultPane data = {items} doac={doac} comed={comed} />
                 </div>
             </div>
         </div>
