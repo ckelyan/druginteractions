@@ -28,11 +28,12 @@ p {
 
 .int-type__text {
     display: inline-block;
-    height: 90%;
+    height: 100%;
+    width: calc(100% - 20px);
     border: 0 !important;
-    margin: 10px 0 !important;
-    padding: 10px 20px !important;
-    border-radius: 50px;
+    margin: 0 0 !important;
+    /* padding: 10px 20px !important;
+    border-radius: 50px; */
 }
 
 ul.select {
@@ -44,7 +45,6 @@ ul.select > li {
     display: block;
     padding: 10px;
     gap: 10px;
-    border-bottom: 1px solid #000;
 }
 
 ul.react-tabs__tab-list {
@@ -140,12 +140,17 @@ li.react-tabs__tab--selected {
     border-top: 1px solid #000;
 }
 
-.interaction-pane > div:nth-child(odd) {
+.interaction-pane > div {
+    border-left: 1px solid #000;
     border-right: 1px solid #000;
 }
 
+.interaction-pane > :nth-child(odd) {
+    background-color: #c1e8cd;
+}
+
 .interaction-pane > div:nth-child(even) {
-    border-left: 1px solid #000;
+    background-color: #95c9a5;
 }
 
 .interaction-pane > div > p:not(div > p.ref) {
@@ -157,7 +162,7 @@ li.react-tabs__tab--selected {
 }
 
 .interaction-pane > div:last-child {
-    border-right: 0;
+    border-bottom: 1px solid #000;
 }
 
 .interaction-pane > div > p.ref {

@@ -19,7 +19,7 @@ export default function InteractionResults(props) {
     }
 
     useEffect(() => {
-        if (isMount) {
+        if (false) {
             const beforeLast = document.querySelector(".interaction-pane > div:nth-last-child(2) > p");
             const blPos = beforeLast.offsetTop;
             const blHeight = beforeLast.offsetHeight + 20;
