@@ -4,4 +4,10 @@ const colorMap = {
     'Major risk': '#d61d13',
 }
 
-export { colorMap };
+const textColorMap = {
+    'Low/no risk': '#000',
+    'Moderate risk': '#000',
+    'Major risk': '#fff',
+}
+
+export { colorMap, textColorMap };

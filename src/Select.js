@@ -12,11 +12,13 @@ function SelectLabel({ label, onChange, selected }) {
     )   
 }
 
-export default function Select({ selected, onChange, options }) {
+export default function Select({ selected, onChange, options, label }) {
     // console.log("opts", options);
     return (
-        <ul className="select">
-            {options?.map(c => (<SelectLabel key={c} label={c} onChange={onChange} selected={selected.includes(c)}/>))}
-        </ul>
+        <div>
+            <ul className="select">
+                {options?.map(c => (<SelectLabel key={c} label={c} onChange={onChange} selected={selected.includes(c)}/>))}
+            </ul>
+        </div>
     )
 }

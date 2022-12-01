@@ -1,4 +1,4 @@
-import { colorMap } from "./Const";
+import { colorMap, textColorMap } from "./Const";
 import { useEffect, useRef } from "react";
 
 const useIsMount = () => {
@@ -30,32 +30,37 @@ export default function InteractionResults(props) {
 
 
     const rendered = (
-        <div className="interaction-pane">
-            {intType && 
-                <div className="int-type">
-                    <p className="int-type__text" style={{background: colorMap[intType]}}>{intType}</p>
-                </div>
-            }
-            {intMech &&
-                <div>
-                   <p className='icon icon-wrench' style={styleWIcon}>{intMech}</p>
-                </div>
-            }
-            {details &&
-                <div>
-                    <p className='icon icon-file' style={styleWIcon}>{details}</p>
-                </div>
-            }
-            {recomendations &&
-                <div>
-                    <p>{recomendations}</p>
-                </div>
-            }
-            {references &&
-                <div>
-                    <p className="ref">{references}</p>
-                </div>
-            }
+        <div style={{height: 482, width: "100%", overflow: "scroll"}}>
+            <div className="interaction-pane">
+                {intType && 
+                    <div className="int-type">
+                        <p className="int-type__text" style={{background: colorMap[intType], color: textColorMap[intType], fontWeight: "bold"}}>{intType}</p>
+                    </div>
+                }
+                {intMech &&
+                    <div>
+                       <p className='icon icon-wrench' style={styleWIcon}>{intMech}</p>
+                    </div>
+                }
+                {details &&
+                    <div>
+                        <p className='icon icon-file' style={styleWIcon}>{details}</p>
+                    </div>
+                }
+                {recomendations &&
+                    <div>
+                        <p>{recomendations}</p>
+                        {references &&
+                            <label className="ref">{references}</label>
+                        }
+                    </div>
+                }
+                {false &&
+                    <div>
+                        <p className="ref">{references}</p>
+                    </div>
+                }
+            </div>
         </div>
     )
 

@@ -6,6 +6,8 @@ body {
     font-family: NeoSansStd, Arial, sans-serif, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    overflow: hidden;
 }
 
 input {
@@ -45,12 +47,14 @@ ul.select > li {
     display: block;
     padding: 10px;
     gap: 10px;
+    border-bottom: 1px solid #777;
 }
 
 ul.react-tabs__tab-list {
     padding: 0;
     margin: 0;
-    width: 100%;
+    margin-left: 20px !important;
+    width: calc(100% - 40px);
     height: 42px;
     float: left;
     overflow-x: auto;
@@ -58,10 +62,6 @@ ul.react-tabs__tab-list {
     white-space: nowrap;
     list-style: none;
 }
-
-.tab-label__icon > svg {
-    vertical-align: middle;
-} 
 
 li.react-tabs__tab {
     display: inline-block;
@@ -71,6 +71,14 @@ li.react-tabs__tab {
     background: #fff;
     user-select: none;
 }
+
+li.react-tabs__tab:not(ul > li:first-child) {
+    border-left: none;
+}
+
+.tab-label__icon > svg {
+    vertical-align: middle;
+} 
 
 li.react-tabs__tab:hover:not(.react-tabs__tab--selected) {
     background: #eee;
@@ -95,8 +103,12 @@ li.react-tabs__tab--selected {
 .content {
     display: block;
     margin: 0;
-    max-width: 80vw;
+    width: 80vw;
     height: 80vh;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20px);
     
     border: 1px solid #000; /* for debugging */
 }
@@ -104,6 +116,8 @@ li.react-tabs__tab--selected {
 .content-grid {
     height: 100%;
     width: 100%;
+    top: 50%;
+    left: 50%;
     padding: 0;
     margin: 0;
 }
@@ -121,7 +135,7 @@ li.react-tabs__tab--selected {
     width: calc(100% - 351px);
     height: 100%;
     float: left;
-    background-color: #8bcca0;
+    background-color: #d1e3d7;
 }
 
 .interaction-pane {
@@ -133,11 +147,12 @@ li.react-tabs__tab--selected {
 
 .interaction-pane > div > p {
     border-top: 1px solid #000;
-    padding: 10px;
+    padding: 20px;
 }
 
 .interaction-pane > div:first-child {
     border-top: 1px solid #000;
+    padding-right: 20px;
 }
 
 .interaction-pane > div {
@@ -157,16 +172,18 @@ li.react-tabs__tab--selected {
     margin-bottom: auto;
 }
 
-.interaction-pane > div:nth-last-child(2) {
+/* .interaction-pane > div:nth-last-child(2) {
     height: var(--before-ref-height);
-}
+} */
 
 .interaction-pane > div:last-child {
     border-bottom: 1px solid #000;
 }
 
-.interaction-pane > div > p.ref {
+.interaction-pane > div > label.ref {
     font-size: 13px;
+    padding: 20px;
+    display: block;
     margin-top: auto;
     margin-bottom: 0;
 }
@@ -182,10 +199,21 @@ li.react-tabs__tab--selected {
     height: 100%;
 }
 
-#doac-select,
+#doac-select {
+    height: 33%;
+}
 #comed-select {
-    height: 50%;
+    height: calc(67% - 1px);
+}
+
+#doac-select > div:first-child {
+    height: 100%;
+}
+
+#comed-select > ul,
+#doac-select > ul {
     overflow-y: auto;
+    height: 100%;
 }
 
 #doac-select {
@@ -195,4 +223,5 @@ li.react-tabs__tab--selected {
 #comed-select {
     background-color: #ADDEBE;
     border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
 }
